@@ -1,0 +1,36 @@
+.form_group {
+    display: flex;
+    align-items: center;
+    label {
+		flex: 0 0 40%;
+	}
+    input[type="text"], input[type="number"], input[type="email"], textarea{
+        flex: 0 0 100%;
+        max-width: 100%;
+        padding-left: 15px;
+        padding-right: 15px;
+        background: #FAFCFF;
+        border: 1px solid rgba(0, 0, 0, 0.15);
+        border-radius: 3px;
+        font-weight: normal;
+        font-size: 13px;
+        line-height: 18px;
+        color: #1B2733;
+        &:focus {
+            border-color: #006AFF;
+            box-shadow: none;
+            outline: none;
+        }
+    }
+    label + input[type="text"], label + textarea, label + input[type="number"], label + input[type="email"]{
+        flex: 0 0 42.61%;
+    }
+    input[type="text"], input[type="number"], input[type="email"] {
+        height: 40px;
+    }
+    textarea {
+        height: 94px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+}

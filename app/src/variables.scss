@@ -1,0 +1,8 @@
+$label-color: rgba(28, 1, 255, 1);
+@mixin clearfix() {
+  &::after {
+    display: block;
+    content: "";
+    clear: both;
+  }
+}
