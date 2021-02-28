@@ -11,7 +11,7 @@ export default function General(props) {
     const {general} = config;
     const {title} = general;
     return (<div className={style.test_class}>
-        <label>{__('Text Label','acowebs-plugin-boiler-plate-text-domain')}</label>
+        <label>{__('Text Label','tutor-lms-quiz-mixer')}</label>
         <TextInput type="text" value={title} onChange={(value) => {
 
         }}/>

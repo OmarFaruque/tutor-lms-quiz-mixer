@@ -22,8 +22,6 @@ const webpackConfig = {
 
     resolve: {
         extensions: [".js", ".jsx", ".json"],
-
-
     },
     devServer: {},
 
@@ -65,7 +63,7 @@ module: {
                     presets: ['@babel/preset-env', "@babel/preset-react"],
                     "plugins": [
                         ["@babel/plugin-proposal-class-properties"],
-                        ["@wordpress/babel-plugin-makepot", { "output": "../languages/acowebs-plugin-boiler-plate-text-domain-en_US.po"}]
+                        ["@wordpress/babel-plugin-makepot", { "output": "../languages/tutor-lms-quiz-mixer-en_US.po"}]
                     ]
                 }
             }

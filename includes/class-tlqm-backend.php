@@ -11,7 +11,7 @@ if (!defined('ABSPATH')) {
 }
 
 
-class ACOTRS_Backend
+class TLQM_Backend
 {
 
 
@@ -105,13 +105,12 @@ class ACOTRS_Backend
      */
     public function __construct($file = '')
     {
-        $this->version = ACOTRS_VERSION;
-        $this->token = ACOTRS_TOKEN;
+        $this->version = TLQM_VERSION;
+        $this->token = TLQM_TOKEN;
         $this->file = $file;
         $this->dir = dirname($this->file);
         $this->assets_dir = trailingslashit($this->dir) . 'assets';
         $this->assets_url = esc_url(trailingslashit(plugins_url('/assets/', $this->file)));
-        $this->script_suffix = defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ? '' : '.min';
         $plugin = plugin_basename($this->file);
 
         // add action links to link to link list display on the plugins page.
@@ -161,7 +160,7 @@ class ACOTRS_Backend
     {
         $action_links = array(
             'settings' => '<a href="' . admin_url('admin.php?page=' . $this->token . '-admin-ui/') . '">'
-                . __('Configure', 'acowebs-plugin-boiler-plate-text-domain') . '</a>'
+                . __('Configure', 'tutor-lms-quiz-mixer') . '</a>'
         );
 
         return array_merge($action_links, $links);
@@ -211,7 +210,7 @@ class ACOTRS_Backend
         /* translators: %s: Plugin Name. */
             __(
                 '%s requires <a href="http://wordpress.org/extend/plugins/woocommerce/">WooCommerce</a> to be installed & activated!',
-                'acowebs-plugin-boiler-plate-text-domain'
+                'tutor-lms-quiz-mixer'
             ),
             ACOTRS_PLUGIN_NAME
         );
@@ -225,24 +224,24 @@ class ACOTRS_Backend
     public function registerRootPage()
     {
         $this->hook_suffix[] = add_submenu_page(
-            'woocommerce',
-            __('Acowebs', 'acowebs-plugin-boiler-plate-text-domain'),
-            __('Acowebs', 'acowebs-plugin-boiler-plate-text-domain'),
-            'manage_woocommerce',
-            $this->token . '-admin-ui',
-            array($this, 'adminUi')
+            'tutor',
+            __('Quiz Mixer', 'tutor-lms-quiz-mixer'),
+            __('Quiz Mixer', 'tutor-lms-quiz-mixer'),
+            'manage_tutor',
+            $this->token . '-quiz-mixer',
+            array($this, 'tlqm_admin_page')
         );
     }
 
     /**
      * Calling view function for admin page components
      */
-    public function adminUi()
+    public function tlqm_admin_page()
     {
 
         echo (
             '<div id="' . $this->token . '_ui_root">
-  <div class="' . $this->token . '_loader"><p>' . __('Loading User Interface...', 'acowebs-plugin-boiler-plate-text-domain') . '</p></div>
+  <div class="' . $this->token . '_loader"><p>' . __('Loading User Interface...', 'tutor-lms-quiz-mixer') . '</p></div>
 </div>'
         );
     }

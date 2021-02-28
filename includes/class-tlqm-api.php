@@ -4,7 +4,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-class ACOTRS_Api
+class TLQM_Api
 {
 
 
