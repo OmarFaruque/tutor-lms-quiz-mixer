@@ -1,48 +1,11 @@
-.acotrs_test_class1I3nr {
-  width: 900px;
-  height: 100px;
-  background: #ffad4e; }
+#apifw_ui_root {
+  padding-right: 10px;
+  max-width: 1200px; }
+  #apifw_ui_root * {
+    box-sizing: border-box; }
 
-.acotrs_form_groupKjEn2 {
-  display: flex;
-  align-items: center; }
-  .acotrs_form_groupKjEn2 label {
-    flex: 0 0 40%; }
-  .acotrs_form_groupKjEn2 input[type="text"], .acotrs_form_groupKjEn2 input[type="number"], .acotrs_form_groupKjEn2 input[type="email"], .acotrs_form_groupKjEn2 textarea {
-    flex: 0 0 100%;
-    max-width: 100%;
-    padding-left: 15px;
-    padding-right: 15px;
-    background: #FAFCFF;
-    border: 1px solid rgba(0, 0, 0, 0.15);
-    border-radius: 3px;
-    font-weight: normal;
-    font-size: 13px;
-    line-height: 18px;
-    color: #1B2733; }
-    .acotrs_form_groupKjEn2 input[type="text"]:focus, .acotrs_form_groupKjEn2 input[type="number"]:focus, .acotrs_form_groupKjEn2 input[type="email"]:focus, .acotrs_form_groupKjEn2 textarea:focus {
-      border-color: #006AFF;
-      box-shadow: none;
-      outline: none; }
-  .acotrs_form_groupKjEn2 label + input[type="text"], .acotrs_form_groupKjEn2 label + textarea, .acotrs_form_groupKjEn2 label + input[type="number"], .acotrs_form_groupKjEn2 label + input[type="email"] {
-    flex: 0 0 42.61%; }
-  .acotrs_form_groupKjEn2 input[type="text"], .acotrs_form_groupKjEn2 input[type="number"], .acotrs_form_groupKjEn2 input[type="email"] {
-    height: 40px; }
-  .acotrs_form_groupKjEn2 textarea {
-    height: 94px;
-    padding-top: 15px;
-    padding-bottom: 15px; }
-
-.acotrs_test_class2wOuq {
-  height: 400px;
-  background: url(./../images/banner-772x250.png) no-repeat; }
-
-.acotrs_active2UBE8 {
-  color: red; }
-
-.acotrs_wrapohVov ul > li {
-  display: inline-block;
-  margin: 6px; }
+.acotrs_tlqmWrap2tVnE {
+  display: block; }
 
 
 /*# sourceMappingURL=backend.css.map*/

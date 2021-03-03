@@ -3,6 +3,14 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "X-Generator: babel-plugin-makepot\n"
 
+#: src/backend.js:79
+msgid "Tutor LMS Quiz Mixer"
+msgstr ""
+
+#: src/backend.js:84
+msgid "Select Quizzes"
+msgstr ""
+
 #: src/pages/General.js:14
 msgid "Text Label"
 msgstr ""

@@ -4,11 +4,8 @@ import ReactDOM from "react-dom";
 
 import FetchWP from './utils/fetchWP';
 
-import General from "./pages/General";
-
-import Page2 from "./pages/Page2";
-
-import Tabs from "./components/Tabs";
+import style from './backend.scss';
+const { __ } = window.wp.i18n;
 
 
 class App extends React.Component {
@@ -24,8 +21,8 @@ class App extends React.Component {
         }
 
         this.fetchWP = new FetchWP({
-            restURL: window.acotrs_object.root,
-            restNonce: window.acotrs_object.api_nonce,
+            restURL: window.tlqm_object.root,
+            restNonce: window.tlqm_object.api_nonce,
 
         });
 
@@ -77,28 +74,29 @@ class App extends React.Component {
     render() {
         const {config} = this.state;
         return (
-            <div>
-                <HashRouter>
-                    <Tabs/>
-                    <Switch>
-                        <Route
-                            path="/"
-                            exact
-                            render={props =>
-                                <General config={config} handleUpdate={this.handleUpdate}/>
-                            }
-                        />
-                        <Route
-                            exact
-                            path="/page2"
-                            render={props =>
-                                <Page2/>
-                            }
-                        />
-                    </Switch>
-                </HashRouter>
+            <div className={style.tlqmWrap}>
+                <div>
+                    <h2>{__('Tutor LMS Quiz Mixer', 'tutor-lms-quiz-mixer') }</h2>
+                    <div className={style.formWrap}>
+                        <div className={style.row}>
+                            {/* Label */}
+                            <div>
+                                {__('Select Quizzes', 'tutor-lms-quiz-mixer')}
+                            </div>
 
+                            {/* Quz selector */}
+                            <div>
+                                
+                            </div>
 
+                            {/* Counter  */}
+                            <div></div>
+
+                            {/* Action */}
+                            <div></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         )
     }
@@ -106,7 +104,7 @@ class App extends React.Component {
 }
 
 
-if (document.getElementById("acotrs_ui_root")) {
-    ReactDOM.render(<App/>, document.getElementById("acotrs_ui_root"));
+if (document.getElementById("tlqm_ui_root")) {
+    ReactDOM.render(<App/>, document.getElementById("tlqm_ui_root"));
 }
 

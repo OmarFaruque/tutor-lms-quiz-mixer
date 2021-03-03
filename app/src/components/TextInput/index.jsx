@@ -27,6 +27,20 @@ export default function TextInput(props) {
           placeholder={placeholder}
         />
       )}
+      {type === 'select' && (
+        <select
+          className={
+            customClass
+              ? `${customClass} ${style.form_control}`
+              : style.form_control
+          }
+          id={name}
+          name={name}
+          onChange={onChange}
+        >
+
+        </select>
+      )}
       {type === 'textarea' && (
         <textarea
           className={
