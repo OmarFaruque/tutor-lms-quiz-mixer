@@ -32,9 +32,25 @@ class TLQM_Api
      */
     public string $token;
 
+    /**
+     * db connection
+     */
+    public $wpdb;
+
+    /**
+     * Table Prefix
+     */
+    public $prefix;
+
     public function __construct()
     {
-        $this->token = ACOTRS_TOKEN;
+        global $wpdb;
+        $this->token = TLQM_TOKEN;
+        $this->wpdb = $wpdb;
+        $this->prefix = $this->wpdb->prefix;
+
+
+        // add_action('wp_head', array($this, 'tlqm_tutorlms_quizes'));
 
         add_action(
             'rest_api_init',
@@ -52,11 +68,28 @@ class TLQM_Api
         );
     }
 
+
+
+    /**
+     * Quizes
+     * @param NULL
+     */
+    public function tlqm_tutorlms_quizes(){
+        $qry = $this->wpdb->prepare( 'SELECT p.`ID`, p.`post_title`, t.`post_title` as `topix_title` FROM '.$this->prefix.'posts p LEFT JOIN '.$this->prefix.'posts t ON p.`post_parent`=t.`ID` WHERE p.`post_type`=%s ORDER BY p.`post_parent`', 'tutor_quiz');
+        $quizes = $this->wpdb->get_results($qry, OBJECT);
+
+        $object = array();
+        foreach($quizes as $s){
+            $object[$s->ID] = $s->post_title . ' (' . $s->topix_title . ')';
+        }
+        return $object;
+    }
+
     public function getConfig()
     {
-        $config = ['general' =>
-            ['title' => 'Acowebs Boiler Plate']
-        ];
+        $config = array(
+            'quizes' => $this->tlqm_tutorlms_quizes()
+        );
 
         return new WP_REST_Response($config, 200);
     }

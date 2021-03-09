@@ -2,6 +2,90 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/components/TextInput/index.jsx":
+/*!********************************************!*\
+  !*** ./src/components/TextInput/index.jsx ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ TextInput)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _textinput_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./textinput.scss */ "./src/components/TextInput/textinput.scss");
+
+
+function TextInput(props) {
+  var label = props.label,
+      customClass = props.customClass,
+      name = props.name,
+      type = props.type,
+      value = props.value,
+      placeholder = props.placeholder,
+      min = props.min,
+      onChange = props.onChange,
+      options = props.options;
+  var items = []; // console.log('type of: ', typeof options);
+
+  if (typeof options != 'undefined') {
+    Object.keys(options).forEach(function (k, v) {
+      items.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
+        key: v,
+        value: k
+      }, options[k]));
+    });
+  }
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: _textinput_scss__WEBPACK_IMPORTED_MODULE_1__.default.form_group
+  }, label && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
+    htmlFor: name,
+    className: _textinput_scss__WEBPACK_IMPORTED_MODULE_1__.default.form_label
+  }, label), type === 'number' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+    className: customClass ? "".concat(customClass, " ").concat(_textinput_scss__WEBPACK_IMPORTED_MODULE_1__.default.form_control) : _textinput_scss__WEBPACK_IMPORTED_MODULE_1__.default.form_control,
+    id: name,
+    name: name,
+    type: type,
+    value: value,
+    min: min,
+    onChange: onChange,
+    placeholder: placeholder
+  }), type === 'select' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("select", {
+    className: customClass ? "".concat(customClass, " ").concat(_textinput_scss__WEBPACK_IMPORTED_MODULE_1__.default.form_control) : _textinput_scss__WEBPACK_IMPORTED_MODULE_1__.default.form_control,
+    id: name,
+    name: name,
+    onChange: onChange
+  }, items.map(function (object, key) {
+    return object;
+  })), type === 'textarea' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("textarea", {
+    className: customClass ? "".concat(customClass, " ").concat(_textinput_scss__WEBPACK_IMPORTED_MODULE_1__.default.form_control) : _textinput_scss__WEBPACK_IMPORTED_MODULE_1__.default.form_control,
+    id: name,
+    name: name,
+    value: value,
+    onChange: onChange,
+    placeholder: placeholder
+  }), type === 'email' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+    className: customClass ? "".concat(customClass, " ").concat(_textinput_scss__WEBPACK_IMPORTED_MODULE_1__.default.form_control) : _textinput_scss__WEBPACK_IMPORTED_MODULE_1__.default.form_control,
+    id: name,
+    name: name,
+    type: type,
+    value: value,
+    onChange: onChange,
+    placeholder: placeholder
+  }), type === 'text' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+    className: customClass ? "".concat(customClass, " ").concat(_textinput_scss__WEBPACK_IMPORTED_MODULE_1__.default.form_control) : _textinput_scss__WEBPACK_IMPORTED_MODULE_1__.default.form_control,
+    id: name,
+    name: name,
+    type: type,
+    value: value,
+    onChange: onChange,
+    placeholder: placeholder
+  }));
+}
+
+/***/ }),
+
 /***/ "./src/utils/fetchWP.js":
 /*!******************************!*\
   !*** ./src/utils/fetchWP.js ***!
@@ -85,7 +169,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 // extracted by mini-css-extract-plugin
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({"tlqmWrap":"acotrs_tlqmWrap2tVnE"});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({"tlqmWrap":"acotrs_tlqmWrap2tVnE","formWrap":"acotrs_formWrap3_1Hi","row":"acotrs_rowwj7Rv"});
+
+/***/ }),
+
+/***/ "./src/components/TextInput/textinput.scss":
+/*!*************************************************!*\
+  !*** ./src/components/TextInput/textinput.scss ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+// extracted by mini-css-extract-plugin
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({"form_group":"acotrs_form_groupKjEn2"});
 
 /***/ }),
 
@@ -30162,8 +30261,9 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-/* harmony import */ var _utils_fetchWP__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./utils/fetchWP */ "./src/utils/fetchWP.js");
-/* harmony import */ var _backend_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./backend.scss */ "./src/backend.scss");
+/* harmony import */ var _components_TextInput__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/TextInput */ "./src/components/TextInput/index.jsx");
+/* harmony import */ var _utils_fetchWP__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./utils/fetchWP */ "./src/utils/fetchWP.js");
+/* harmony import */ var _backend_scss__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./backend.scss */ "./src/backend.scss");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -30193,7 +30293,33 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
 var __ = window.wp.i18n.__;
+
+var SingleRow = function SingleRow(props) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, function () {
+    if (props.index <= 0) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, __('Select Quizzes', 'tutor-lms-quiz-mixer'));
+    }
+  }()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_TextInput__WEBPACK_IMPORTED_MODULE_2__.default, {
+    type: "select",
+    options: props.config.quizes,
+    onChange: props.handleInputChange,
+    name: "quiz",
+    value: ""
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_TextInput__WEBPACK_IMPORTED_MODULE_2__.default, {
+    type: "number",
+    name: "quiz_number",
+    onChange: props.handleInputChange,
+    value: "",
+    min: 1
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: _backend_scss__WEBPACK_IMPORTED_MODULE_4__.default.icon
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+    onClick: props.addNew,
+    "class": "dashicons dashicons-plus-alt2"
+  }))));
+};
 
 var App = /*#__PURE__*/function (_React$Component) {
   _inherits(App, _React$Component);
@@ -30217,6 +30343,21 @@ var App = /*#__PURE__*/function (_React$Component) {
       });
     });
 
+    _defineProperty(_assertThisInitialized(_this), "handleInputChange", function (e) {});
+
+    _defineProperty(_assertThisInitialized(_this), "addNewRow", function (e) {
+      var temp_quizes = _this.state.temp_quizes;
+      var newObject = {
+        quiz_name: '',
+        quiz_number: 1
+      };
+      temp_quizes.push(newObject);
+
+      _this.setState({
+        temp_quizes: temp_quizes
+      });
+    });
+
     _this.state = {
       loader: false,
       saving: false,
@@ -30227,9 +30368,13 @@ var App = /*#__PURE__*/function (_React$Component) {
         page2: {
           title: ''
         }
-      }
+      },
+      temp_quizes: [{
+        quiz_name: '',
+        quiz_number: 1
+      }]
     };
-    _this.fetchWP = new _utils_fetchWP__WEBPACK_IMPORTED_MODULE_2__.default({
+    _this.fetchWP = new _utils_fetchWP__WEBPACK_IMPORTED_MODULE_3__.default({
       restURL: window.tlqm_object.root,
       restNonce: window.tlqm_object.api_nonce
     });
@@ -30260,6 +30405,8 @@ var App = /*#__PURE__*/function (_React$Component) {
         loader: true
       });
       this.fetchWP.get('config/').then(function (json) {
+        console.log('config: ', json);
+
         _this2.setState({
           loader: false,
           config: json
@@ -30269,14 +30416,25 @@ var App = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var config = this.state.config;
+      var _this3 = this;
+
+      var _this$state = this.state,
+          config = _this$state.config,
+          temp_quizes = _this$state.temp_quizes;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: _backend_scss__WEBPACK_IMPORTED_MODULE_3__.default.tlqmWrap
+        className: _backend_scss__WEBPACK_IMPORTED_MODULE_4__.default.tlqmWrap
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, __('Tutor LMS Quiz Mixer', 'tutor-lms-quiz-mixer')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: _backend_scss__WEBPACK_IMPORTED_MODULE_3__.default.formWrap
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: _backend_scss__WEBPACK_IMPORTED_MODULE_3__.default.row
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, __('Select Quizzes', 'tutor-lms-quiz-mixer')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null)))));
+        className: _backend_scss__WEBPACK_IMPORTED_MODULE_4__.default.formWrap
+      }, temp_quizes.map(function (k, v) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          className: _backend_scss__WEBPACK_IMPORTED_MODULE_4__.default.row
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(SingleRow, {
+          index: v,
+          handleInputChange: _this3.handleInputChange,
+          config: config,
+          addNew: _this3.addNewRow
+        })));
+      }))));
     }
   }]);
 

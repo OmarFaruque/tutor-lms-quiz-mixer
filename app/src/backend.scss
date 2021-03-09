@@ -11,4 +11,53 @@
 
 .tlqmWrap{
   display: block;
+  .formWrap{
+    padding: 15px;
+    border: 1px solid #eee;
+    box-shadow: 1px ​1px 0.2em #ddd;
+    max-width: 1000px;
+    background-color: white;
+    border-radius: 5px;
+    .row{
+      display: flex;
+      margin: 0 0 25px 0;
+      >div{
+        margin: 0 10px;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        >div{
+          width: 100%;
+        }
+        &:first-child{
+          flex: 2;
+        }
+        &:nth-child(2){
+          flex:5;
+          select{
+            border-radius: 30px;
+          }
+        }
+        &:nth-child(3){
+          flex:1;
+          input{
+            max-width: 100px;
+            border-radius: 30px;
+          }
+        }
+        &:last-child{
+          flex: 1;
+          >div{
+            span{
+              border-radius: 100px;
+              border: 1px solid blue;
+              padding: 5px;
+              cursor: pointer;
+              color: blue;
+            }
+          }
+        }
+      }
+    }
+  }
 }

@@ -2,7 +2,15 @@ import React from 'react';
 import style from './textinput.scss';
 
 export default function TextInput(props) {
-  const { label,customClass, name, type, value, placeholder, min, onChange } = props;
+  const { label,customClass, name, type, value, placeholder, min, onChange, options } = props;
+
+  const items = [];
+  // console.log('type of: ', typeof options);
+  if(typeof options != 'undefined'){
+    Object.keys(options).forEach(function(k, v){
+      items.push(<option key={v} value={k}>{options[k]}</option>);  
+    });
+  }
 
   return (
     <div className={style.form_group}>
@@ -38,7 +46,11 @@ export default function TextInput(props) {
           name={name}
           onChange={onChange}
         >
-
+        {items.map(function(object, key){
+          return(
+            object
+          )
+        })}
         </select>
       )}
       {type === 'textarea' && (
