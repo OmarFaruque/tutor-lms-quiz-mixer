@@ -50,7 +50,7 @@ class TLQM_Api
         $this->prefix = $this->wpdb->prefix;
 
 
-        // add_action('wp_head', array($this, 'tlqm_tutorlms_quizes'));
+        // add_action('wp_head', array($this, 'tlqm_get_all_courses'));
 
         add_action(
             'rest_api_init',
@@ -68,6 +68,24 @@ class TLQM_Api
         );
     }
 
+
+    /**
+     * @param NULL
+     * return all course
+     */
+    public function tlqm_get_all_courses(){
+        $courses = get_posts(
+                array(
+                    'post_type' => 'courses', 
+                    'post_status' => 'publish', 
+                    'numberposts' => -1
+                )
+            );
+
+        $nCourses = array();
+        foreach($courses as $s) $nCourses[$s->ID] = $s->post_title;
+        return $nCourses;
+    }
 
 
     /**
@@ -88,7 +106,8 @@ class TLQM_Api
     public function getConfig()
     {
         $config = array(
-            'quizes' => $this->tlqm_tutorlms_quizes()
+            'quizes' => $this->tlqm_tutorlms_quizes(), 
+            'courses' => $this->tlqm_get_all_courses()
         );
 
         return new WP_REST_Response($config, 200);

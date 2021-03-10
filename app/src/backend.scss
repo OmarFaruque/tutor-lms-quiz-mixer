@@ -45,7 +45,7 @@
             border-radius: 30px;
           }
         }
-        &:last-child{
+        &:not(.switcher):last-child{
           flex: 1;
           >div{
             span{
@@ -56,6 +56,9 @@
               color: blue;
             }
           }
+        } 
+        &.switcher{
+          flex: 1;
         }
       }
     }

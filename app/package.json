@@ -56,6 +56,7 @@
   "dependencies": {
     "@atlaskit/datetime-picker": "^10.0.6",
     "@hot-loader/react-dom": "^17.0.0",
+    "@material-ui/core": "^4.11.3",
     "@wordpress/babel-plugin-makepot": "^3.9.0",
     "@wordpress/babel-preset-default": "^4.19.0",
     "@wordpress/i18n": "^3.16.0",
@@ -77,10 +78,13 @@
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-select": "^3.1.0",
+    "react-select2": "^4.0.3",
+    "react-switch": "^6.0.0",
     "react-toggle": "^4.1.1",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
     "sass-resources-loader": "^2.1.1",
+    "select2": "^4.1.0-rc.0",
     "source-map-explorer": "^2.5.0"
   }
 }

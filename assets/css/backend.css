@@ -65,14 +65,16 @@
           .acotrs_tlqmWrap2tVnE .acotrs_formWrap3_1Hi .acotrs_rowwj7Rv > div:nth-child(3) input {
             max-width: 100px;
             border-radius: 30px; }
-        .acotrs_tlqmWrap2tVnE .acotrs_formWrap3_1Hi .acotrs_rowwj7Rv > div:last-child {
+        .acotrs_tlqmWrap2tVnE .acotrs_formWrap3_1Hi .acotrs_rowwj7Rv > div:not(.acotrs_switcherdfo9K):last-child {
           flex: 1; }
-          .acotrs_tlqmWrap2tVnE .acotrs_formWrap3_1Hi .acotrs_rowwj7Rv > div:last-child > div span {
+          .acotrs_tlqmWrap2tVnE .acotrs_formWrap3_1Hi .acotrs_rowwj7Rv > div:not(.acotrs_switcherdfo9K):last-child > div span {
             border-radius: 100px;
             border: 1px solid blue;
             padding: 5px;
             cursor: pointer;
             color: blue; }
+        .acotrs_tlqmWrap2tVnE .acotrs_formWrap3_1Hi .acotrs_rowwj7Rv > div.acotrs_switcherdfo9K {
+          flex: 1; }
 
 
 /*# sourceMappingURL=backend.css.map*/

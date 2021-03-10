@@ -1,9 +1,10 @@
 import React from "react";
-import {HashRouter, Route, Switch} from 'react-router-dom'
+import {HashRouter, Route} from 'react-router-dom'
 import ReactDOM from "react-dom";
-import TextInput from './components/TextInput'
-
+import TextInput from './components/TextInput';
+import { Switch } from '@material-ui/core';
 import FetchWP from './utils/fetchWP';
+
 
 import style from './backend.scss';
 const { __ } = window.wp.i18n;
@@ -31,7 +32,7 @@ const SingleRow = (props) => {
             <TextInput
                 type="select"
                 options={props.config.quizes}
-                onChange={props.handleInputChange}
+                onChange={(e) => props.handleInputChange(e, props.index)}
                 name="quiz"
                 value=""
             />
@@ -42,8 +43,8 @@ const SingleRow = (props) => {
             <TextInput 
                 type="number"
                 name="quiz_number"
-                onChange={props.handleInputChange}
-                value=""
+                onChange={(e) => props.handleInputChange(e, props.index)}
+                value={props.item.quiz_number}
                 min={1}
             />
         </div>
@@ -51,7 +52,7 @@ const SingleRow = (props) => {
         {/* Action */}
         <div className={style.icon}>
             <div>
-                <span onClick={props.addNew} class="dashicons dashicons-plus-alt2"></span>
+                <span onClick={props.addNew} className="dashicons dashicons-plus-alt2"></span>
             </div>
         </div>
         </>
@@ -64,6 +65,8 @@ class App extends React.Component {
         this.state = {
             loader: false,
             saving: false,
+            newcourse: false,
+            temp_course: false,
             config: {
                 general: {title: ''},
                 page2: {title: ''}
@@ -113,10 +116,25 @@ class App extends React.Component {
     /**
      * 
      * @param {default event} e 
+     * @param (index) number
      * Handle all input change event
      */
-    handleInputChange = (e) => {
-        
+    handleInputChange = (e, index = false) => {
+
+        const {temp_quizes} = this.state;
+
+        if(index){
+            temp_quizes[index][e.target.name] = e.target.value;
+            this.setState(
+                {
+                    temp_quizes: temp_quizes
+                }
+            )
+        }else{
+            this.setState({
+                [e.target.name]: e.target.value
+            })
+        }
         
     }
 
@@ -158,7 +176,7 @@ class App extends React.Component {
     }
 
     render() {
-        const {config, temp_quizes} = this.state;
+        const {config, temp_quizes, newcourse} = this.state;
         return (
             <div className={style.tlqmWrap}>
                 <div>
@@ -170,14 +188,51 @@ class App extends React.Component {
                                     temp_quizes.map((k, v) => {
                                         return(
                                             <>
-                                                <div className={style.row}>
-                                                    <SingleRow index={v} handleInputChange={this.handleInputChange} config={config} addNew={this.addNewRow} />
+                                                <div key={v} className={style.row}>
+                                                    <SingleRow 
+                                                        key={v} 
+                                                        index={v} 
+                                                        item={temp_quizes[v]} 
+                                                        handleInputChange={this.handleInputChange} 
+                                                        config={config} 
+                                                        addNew={this.addNewRow} 
+                                                    />
                                                 </div>
                                             </>
                                         )
                                     })
                             }
-                            
+
+                            {/* Course */}
+                            <div className={style.row}>
+                                <div>
+                                   {__('Search course', 'tutor-lms-quiz-mixer')}
+                                </div>
+
+                                {/* Course selector */}
+                                <div>
+                                    <TextInput
+                                        type="select"
+                                        options={config.courses}
+                                        onChange={this.handleInputChange}
+                                        name="temp_course"
+                                        value=""
+                                    />
+                                </div>
+
+                                {/* Counter  */}
+                                <div>
+                                    {__('New Course?', 'tutor-lms-quiz-mixer')}
+                                </div>
+
+                                {/* Action */}
+                                <div className={style.switcher}>
+                                    <div>
+                                    {/* <Switch onChange={this.handleInputChange} checked={0} /> */}
+                                    <Switch size="small" checked={false} onChange={ this.handleInputChange } />
+                                    </div>
+                                </div>
+                            </div>  
                     </div>
                 </div>
             </div>
