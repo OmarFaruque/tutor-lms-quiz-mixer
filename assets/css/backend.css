@@ -10,7 +10,7 @@
     padding-right: 15px;
     background: #FAFCFF;
     border: 1px solid rgba(0, 0, 0, 0.15);
-    border-radius: 3px;
+    border-radius: 50px;
     font-weight: normal;
     font-size: 13px;
     line-height: 18px;
@@ -23,6 +23,8 @@
     flex: 0 0 42.61%; }
   .acotrs_form_groupKjEn2 input[type="text"], .acotrs_form_groupKjEn2 input[type="number"], .acotrs_form_groupKjEn2 input[type="email"], .acotrs_form_groupKjEn2 select {
     height: 40px; }
+  .acotrs_form_groupKjEn2 input[type="number"] {
+    width: 100%; }
   .acotrs_form_groupKjEn2 textarea {
     height: 94px;
     padding-top: 15px;

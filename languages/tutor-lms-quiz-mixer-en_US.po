@@ -3,18 +3,30 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "X-Generator: babel-plugin-makepot\n"
 
-#: src/backend.js:183
+#: src/backend.js:210
 msgid "Tutor LMS Quiz Mixer"
-msgstr ""
-
-#: src/backend.js:209
-msgid "Search course"
 msgstr ""
 
 #: src/backend.js:22
 msgid "Select Quizzes"
 msgstr ""
 
-#: src/backend.js:225
+#: src/backend.js:237
+msgid "Course Title"
+msgstr ""
+
+#: src/backend.js:237
+msgid "Search course"
+msgstr ""
+
+#: src/backend.js:266
 msgid "New Course?"
+msgstr ""
+
+#: src/backend.js:282
+msgid "Select Topic"
+msgstr ""
+
+#: src/backend.js:298
+msgid "Order"
 msgstr ""

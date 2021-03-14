@@ -50,7 +50,7 @@ class TLQM_Api
         $this->prefix = $this->wpdb->prefix;
 
 
-        // add_action('wp_head', array($this, 'tlqm_get_all_courses'));
+        add_action('wp_head', array($this, 'tlqmTopics'));
 
         add_action(
             'rest_api_init',
@@ -64,8 +64,37 @@ class TLQM_Api
                         'permission_callback' => array($this, 'getPermission'),
                     )
                 );
+
+                /**Get Topics */
+                register_rest_route(
+                    $this->token . '/v1',
+                    '/get_topics/',
+                    array(
+                        'methods' => 'POST',
+                        'callback' => array($this, 'tlqmTopics'),
+                        'permission_callback' => array($this, 'getPermission'),
+                    )
+                );
+
             }
         );
+    }
+
+
+
+    /**
+     * @param course id
+     * Get course topics by course id
+     *
+     */
+    public function tlqmTopics($data){
+        $course_id = $data['course_id'];
+        $qry = $this->wpdb->prepare( 'SELECT p.`ID`, p.`post_title` FROM '.$this->prefix.'posts p WHERE p.`post_type`=%s AND p.`post_parent`=%s ORDER BY p.`post_parent`', 'topics', $course_id);
+        $topics = $this->wpdb->get_results($qry, OBJECT);
+        $newTopics = array();
+        foreach($topics as $single) $newTopics[$single->ID] = $single->post_title;
+        
+        return new WP_REST_Response($newTopics, 200);
     }
 
 
@@ -103,12 +132,22 @@ class TLQM_Api
         return $object;
     }
 
+    /**
+     * Get All Topics
+     * @param NULL
+     */
+    public function tlqm_tutorlms_topics(){
+
+    }
+
     public function getConfig()
     {
         $config = array(
             'quizes' => $this->tlqm_tutorlms_quizes(), 
-            'courses' => $this->tlqm_get_all_courses()
+            'courses' => $this->tlqm_get_all_courses(), 
+            'topics' => $this->tlqmTopics(array('course_id' => end(array_keys($this->tlqm_get_all_courses() ))))
         );
+        
 
         return new WP_REST_Response($config, 200);
     }

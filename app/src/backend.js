@@ -67,6 +67,8 @@ class App extends React.Component {
             saving: false,
             newcourse: false,
             temp_course: false,
+            temp_topics: false,
+            temp_select_topic: false,
             config: {
                 general: {title: ''},
                 page2: {title: ''}
@@ -119,7 +121,8 @@ class App extends React.Component {
      * @param (index) number
      * Handle all input change event
      */
-    handleInputChange = (e, index = false) => {
+    handleInputChange = (e, index = false, type='', name='') => {
+        
 
         const {temp_quizes} = this.state;
 
@@ -131,9 +134,31 @@ class App extends React.Component {
                 }
             )
         }else{
-            this.setState({
-                [e.target.name]: e.target.value
-            })
+            if(type == 'switch'){
+                this.setState({
+                    [name]: !this.state[name]? true : false
+                })
+            }
+            else if(e.target.type == 'select-one' && e.target.name == 'temp_course'){
+                let course_id = {
+                    course_id: e.target.value
+                }
+                this.fetchWP.post('get_topics/', course_id)
+                .then(
+                    (json) => {
+                        
+                        this.setState({
+                            [e.target.name]: e.target.value, 
+                            temp_topics: json
+                        })
+                    })
+    
+            }
+            else{
+                this.setState({
+                    [e.target.name]: e.target.value
+                })
+            }
         }
         
     }
@@ -165,10 +190,12 @@ class App extends React.Component {
         this.fetchWP.get('config/')
             .then(
                 (json) => {
-                    console.log('config: ', json);
+                    console.log('json: ', json.topics.data);
                     this.setState({
                         loader: false,
                         config: json,
+                        temp_course: Object.keys(json.courses)[0], 
+                        temp_topics: json.topics.data
                     });
                 });
 
@@ -176,7 +203,7 @@ class App extends React.Component {
     }
 
     render() {
-        const {config, temp_quizes, newcourse} = this.state;
+        const {config, temp_quizes, newcourse, temp_topics} = this.state;
         return (
             <div className={style.tlqmWrap}>
                 <div>
@@ -206,18 +233,32 @@ class App extends React.Component {
                             {/* Course */}
                             <div className={style.row}>
                                 <div>
-                                   {__('Search course', 'tutor-lms-quiz-mixer')}
+                                    {
+                                        this.state.newcourse ? __('Course Title', 'tutor-lms-quiz-mixer') : __('Search course', 'tutor-lms-quiz-mixer')
+                                    }
+                                   
                                 </div>
 
                                 {/* Course selector */}
                                 <div>
-                                    <TextInput
-                                        type="select"
-                                        options={config.courses}
-                                        onChange={this.handleInputChange}
-                                        name="temp_course"
-                                        value=""
-                                    />
+                                    {
+                                        this.state.newcourse 
+                                        ? 
+                                        <TextInput
+                                            type="text"
+                                            onChange={this.handleInputChange}
+                                            name="temp_course"
+                                            value={this.state.temp_course}
+                                        />
+                                        :
+                                        <TextInput
+                                            type="select"
+                                            options={config.courses}
+                                            onChange={this.handleInputChange}
+                                            name="temp_course"
+                                            value={this.state.temp_course}
+                                        />
+                                    }
                                 </div>
 
                                 {/* Counter  */}
@@ -229,10 +270,48 @@ class App extends React.Component {
                                 <div className={style.switcher}>
                                     <div>
                                     {/* <Switch onChange={this.handleInputChange} checked={0} /> */}
-                                    <Switch size="small" checked={false} onChange={ this.handleInputChange } />
+                                    <Switch size="small" checked={this.state.newcourse} onClick={(e) => this.handleInputChange(e, false, 'switch', 'newcourse') } />
                                     </div>
                                 </div>
                             </div>  
+
+
+                            {/* Topics */}
+                            <div className={style.row}>
+                                <div>
+                                   {__('Select Topic', 'tutor-lms-quiz-mixer')}
+                                </div>
+
+                                {/* Course selector */}
+                                <div>
+                                        <TextInput
+                                            type="select"
+                                            options={temp_topics}
+                                            onChange={this.handleInputChange}
+                                            name="temp_select_topic"
+                                            value={this.state.temp_select_topic}
+                                        />
+                                </div>
+
+                                {/* Counter  */}
+                                <div>
+                                    {__('Order', 'tutor-lms-quiz-mixer')}
+                                </div>
+
+                                {/* Action */}
+                                <div className={style.switcher}>
+                                    <div>
+                                        <TextInput 
+                                            type="number"
+                                            name="topics_order"
+                                            value={5}
+                                        />
+                                    </div>
+                                </div>
+                            </div>  
+                            {/* End Topics */}
+
+
                     </div>
                 </div>
             </div>
