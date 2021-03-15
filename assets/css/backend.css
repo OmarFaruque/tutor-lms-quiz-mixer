@@ -30,6 +30,25 @@
     padding-top: 15px;
     padding-bottom: 15px; }
 
+.acotrs_quizWrap19KYi {
+  display: block; }
+  .acotrs_quizWrap19KYi .acotrs_closeBtn2FPiU {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    text-align: center;
+    border-radius: 82px;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background-color: #aaa;
+    font-size: 21px; }
+    .acotrs_quizWrap19KYi .acotrs_closeBtn2FPiU:hover {
+      background-color: red; }
+
 @charset "UTF-8";
 #apifw_ui_root {
   padding-right: 10px;
@@ -40,12 +59,18 @@
 .acotrs_tlqmWrap2tVnE {
   display: block; }
   .acotrs_tlqmWrap2tVnE .acotrs_formWrap3_1Hi {
-    padding: 15px;
+    padding: 25px;
     border: 1px solid #eee;
     box-shadow: 1px ​1px 0.2em #ddd;
     max-width: 1000px;
     background-color: white;
     border-radius: 5px; }
+    .acotrs_tlqmWrap2tVnE .acotrs_formWrap3_1Hi button {
+      text-align: right;
+      margin-left: auto;
+      margin-top: 40px;
+      display: block;
+      margin-bottom: 10px; }
     .acotrs_tlqmWrap2tVnE .acotrs_formWrap3_1Hi .acotrs_rowwj7Rv {
       display: flex;
       margin: 0 0 25px 0; }

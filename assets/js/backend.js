@@ -5789,6 +5789,93 @@ var refType = prop_types__WEBPACK_IMPORTED_MODULE_0___default().oneOfType([(prop
 
 /***/ }),
 
+/***/ "./src/components/QuizModal/index.jsx":
+/*!********************************************!*\
+  !*** ./src/components/QuizModal/index.jsx ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ QuizModal)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_awesome_modal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-awesome-modal */ "./node_modules/react-awesome-modal/lib/index.js");
+/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./style.scss */ "./src/components/QuizModal/style.scss");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+
+var QuizModal = /*#__PURE__*/function (_Component) {
+  _inherits(QuizModal, _Component);
+
+  var _super = _createSuper(QuizModal);
+
+  function QuizModal() {
+    _classCallCheck(this, QuizModal);
+
+    return _super.apply(this, arguments);
+  }
+
+  _createClass(QuizModal, [{
+    key: "render",
+    value: function render() {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_awesome_modal__WEBPACK_IMPORTED_MODULE_1__.default, {
+        visible: 1,
+        width: "900",
+        height: "370",
+        effect: "fadeInLeft",
+        onClickAway: this.props.modalHandler
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: _style_scss__WEBPACK_IMPORTED_MODULE_2__.default.quizWrap
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Content"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+        className: _style_scss__WEBPACK_IMPORTED_MODULE_2__.default.closeBtn,
+        href: "#",
+        onClick: this.props.modalHandler
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", {
+        width: "1em",
+        height: "1em",
+        viewBox: "0 0 16 16",
+        className: "bi bi-x",
+        fill: "currentColor",
+        xmlns: "http://www.w3.org/2000/svg"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("path", {
+        fillRule: "evenodd",
+        d: "M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"
+      })))))));
+    }
+  }]);
+
+  return QuizModal;
+}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
+
+
+
+/***/ }),
+
 /***/ "./src/components/TextInput/index.jsx":
 /*!********************************************!*\
   !*** ./src/components/TextInput/index.jsx ***!
@@ -9938,6 +10025,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./src/components/QuizModal/style.scss":
+/*!*********************************************!*\
+  !*** ./src/components/QuizModal/style.scss ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+// extracted by mini-css-extract-plugin
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({"quizWrap":"acotrs_quizWrap19KYi","closeBtn":"acotrs_closeBtn2FPiU"});
+
+/***/ }),
+
 /***/ "./src/components/TextInput/textinput.scss":
 /*!*************************************************!*\
   !*** ./src/components/TextInput/textinput.scss ***!
@@ -10815,6 +10918,447 @@ var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
 
 module.exports = ReactPropTypesSecret;
 
+
+/***/ }),
+
+/***/ "./node_modules/react-awesome-modal/lib/effect/fadeInDown.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/react-awesome-modal/lib/effect/fadeInDown.js ***!
+  \*******************************************************************/
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+    value: true
+}));
+exports.default = {
+    'mask': {
+        'position': 'fixed',
+        'top': 0,
+        'left': 0,
+        'width': '100%',
+        'height': '100%',
+        'backgroundColor': 'rgba(0, 0, 0, 0.7)',
+        'zIndex': 10001
+    },
+    'maskHidden': {
+        'display': 'none'
+    },
+    'container': {
+        'position': 'fixed',
+        'top': 0,
+        'left': 0,
+        'width': '100%',
+        'height': '100%',
+        'display': 'flex',
+        'justifyContent': 'center',
+        'alignItems': 'center',
+        'zIndex': 10000
+    },
+    'containerHidden': {
+        'position': 'fixed',
+        'top': 0,
+        'left': 0,
+        'width': '100%',
+        'height': '100%',
+        'display': 'flex',
+        'justifyContent': 'center',
+        'alignItems': 'center',
+        'zIndex': -1
+    },
+    'panel': {
+        'backgroundColor': '#fff',
+        'borderRadius': '5px',
+        'boxSizing': 'border-box',
+        'boxShadow': '0 2px 4px rgba(0, 0, 0, 0.3)',
+        'transform': 'translate3d(0, 0, 0)',
+        'transition': 'transform 500ms cubic-bezier(0, 0, 0.25, 1), opacity 500ms cubic-bezier(0, 0, 0.25, 1)',
+        'zIndex': 10002
+    },
+    'panelHidden': {
+        'transform': 'translate3d(0, -100px, 0)',
+        'opacity': 0,
+        'zIndex': -1,
+        'height': 0,
+        'width': 0,
+        'overflow': 'hidden'
+    }
+};
+
+/***/ }),
+
+/***/ "./node_modules/react-awesome-modal/lib/effect/fadeInLeft.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/react-awesome-modal/lib/effect/fadeInLeft.js ***!
+  \*******************************************************************/
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+    value: true
+}));
+exports.default = {
+    'mask': {
+        'position': 'fixed',
+        'top': 0,
+        'left': 0,
+        'width': '100%',
+        'height': '100%',
+        'backgroundColor': 'rgba(0, 0, 0, 0.7)',
+        'zIndex': 10001
+    },
+    'maskHidden': {
+        'display': 'none'
+    },
+    'container': {
+        'position': 'fixed',
+        'top': 0,
+        'left': 0,
+        'width': '100%',
+        'height': '100%',
+        'display': 'flex',
+        'justifyContent': 'center',
+        'alignItems': 'center',
+        'zIndex': 10000
+    },
+    'containerHidden': {
+        'position': 'fixed',
+        'top': 0,
+        'left': 0,
+        'width': '100%',
+        'height': '100%',
+        'display': 'flex',
+        'justifyContent': 'center',
+        'alignItems': 'center',
+        'zIndex': -1
+    },
+    'panel': {
+        'backgroundColor': '#fff',
+        'borderRadius': '5px',
+        'boxSizing': 'border-box',
+        'boxShadow': '0 2px 4px rgba(0, 0, 0, 0.3)',
+        'transform': 'translate3d(0, 0, 0)',
+        'transition': 'transform 500ms cubic-bezier(0, 0, 0.25, 1), opacity 500ms cubic-bezier(0, 0, 0.25, 1)',
+        'zIndex': 10002
+    },
+    'panelHidden': {
+        'transform': 'translate3d(-100px, 0, 0)',
+        'opacity': 0,
+        'zIndex': -1,
+        'height': 0,
+        'width': 0,
+        'overflow': 'hidden'
+    }
+};
+
+/***/ }),
+
+/***/ "./node_modules/react-awesome-modal/lib/effect/fadeInRight.js":
+/*!********************************************************************!*\
+  !*** ./node_modules/react-awesome-modal/lib/effect/fadeInRight.js ***!
+  \********************************************************************/
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+    value: true
+}));
+exports.default = {
+    'mask': {
+        'position': 'fixed',
+        'top': 0,
+        'left': 0,
+        'width': '100%',
+        'height': '100%',
+        'backgroundColor': 'rgba(0, 0, 0, 0.7)',
+        'zIndex': 10001
+    },
+    'maskHidden': {
+        'display': 'none'
+    },
+    'container': {
+        'position': 'fixed',
+        'top': 0,
+        'left': 0,
+        'width': '100%',
+        'height': '100%',
+        'display': 'flex',
+        'justifyContent': 'center',
+        'alignItems': 'center',
+        'zIndex': 10000
+    },
+    'containerHidden': {
+        'position': 'fixed',
+        'top': 0,
+        'left': 0,
+        'width': '100%',
+        'height': '100%',
+        'display': 'flex',
+        'justifyContent': 'center',
+        'alignItems': 'center',
+        'zIndex': -1
+    },
+    'panel': {
+        'backgroundColor': '#fff',
+        'borderRadius': '5px',
+        'boxSizing': 'border-box',
+        'boxShadow': '0 2px 4px rgba(0, 0, 0, 0.3)',
+        'transform': 'translate3d(0, 0, 0)',
+        'transition': 'transform 500ms cubic-bezier(0, 0, 0.25, 1), opacity 500ms cubic-bezier(0, 0, 0.25, 1)',
+        'zIndex': 10002
+    },
+    'panelHidden': {
+        'transform': 'translate3d(100px, 0, 0)',
+        'opacity': 0,
+        'zIndex': -1,
+        'height': 0,
+        'width': 0,
+        'overflow': 'hidden'
+    }
+};
+
+/***/ }),
+
+/***/ "./node_modules/react-awesome-modal/lib/effect/fadeInUp.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/react-awesome-modal/lib/effect/fadeInUp.js ***!
+  \*****************************************************************/
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+    value: true
+}));
+exports.default = {
+    'mask': {
+        'position': 'fixed',
+        'top': 0,
+        'left': 0,
+        'width': '100%',
+        'height': '100%',
+        'backgroundColor': 'rgba(0, 0, 0, 0.7)',
+        'zIndex': 10001
+    },
+    'maskHidden': {
+        'display': 'none'
+    },
+    'container': {
+        'position': 'fixed',
+        'top': 0,
+        'left': 0,
+        'width': '100%',
+        'height': '100%',
+        'display': 'flex',
+        'justifyContent': 'center',
+        'alignItems': 'center',
+        'zIndex': 10000
+    },
+    'containerHidden': {
+        'position': 'fixed',
+        'top': 0,
+        'left': 0,
+        'width': '100%',
+        'height': '100%',
+        'display': 'flex',
+        'justifyContent': 'center',
+        'alignItems': 'center',
+        'zIndex': -1
+    },
+    'panel': {
+        'backgroundColor': '#fff',
+        'borderRadius': '5px',
+        'boxSizing': 'border-box',
+        'boxShadow': '0 2px 4px rgba(0, 0, 0, 0.3)',
+        'transform': 'translate3d(0, 0, 0)',
+        'transition': 'transform 500ms cubic-bezier(0, 0, 0.25, 1), opacity 500ms cubic-bezier(0, 0, 0.25, 1)',
+        'zIndex': 10002
+    },
+    'panelHidden': {
+        'transform': 'translate3d(0, 100px, 0)',
+        'opacity': 0,
+        'zIndex': -1,
+        'height': 0,
+        'width': 0,
+        'overflow': 'hidden'
+    }
+};
+
+/***/ }),
+
+/***/ "./node_modules/react-awesome-modal/lib/index.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/react-awesome-modal/lib/index.js ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+    value: true
+}));
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _style = __webpack_require__(/*! ./style.js */ "./node_modules/react-awesome-modal/lib/style.js");
+
+var _style2 = _interopRequireDefault(_style);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Modal = function (_Component) {
+    _inherits(Modal, _Component);
+
+    function Modal(props) {
+        _classCallCheck(this, Modal);
+
+        var _this = _possibleConstructorReturn(this, (Modal.__proto__ || Object.getPrototypeOf(Modal)).call(this, props));
+
+        var effect = props.effect || 'fadeInDown';
+        _this.setSize(effect);
+        _this.state = {
+            visible: props.visible,
+            style: _style2.default[effect]
+        };
+        return _this;
+    }
+
+    _createClass(Modal, [{
+        key: 'componentWillReceiveProps',
+        value: function componentWillReceiveProps(_ref) {
+            var visible = _ref.visible,
+                _ref$effect = _ref.effect,
+                effect = _ref$effect === undefined ? 'fadeInDown' : _ref$effect;
+
+            this.setState({
+                visible: visible
+            });
+            this.setSize(effect);
+            this.setStyles(effect);
+        }
+    }, {
+        key: 'setStyles',
+        value: function setStyles(effect) {
+            if (this.props && this.props.styles) {
+                _style2.default[effect].panel = _extends({}, _style2.default[effect].panel, this.props.styles);
+            }
+        }
+    }, {
+        key: 'setSize',
+        value: function setSize(effect) {
+            if (this.props && this.props.width) {
+                if (this.props.width.charAt(this.props.width.length - 1) === '%') {
+                    // Use Percentage
+                    var width = this.props.width.slice(0, -1);
+                    _style2.default[effect].panel.width = width + '%';
+                } else if (this.props.width.charAt(this.props.width.length - 1) === 'x') {
+                    // Use Pixels
+                    var _width = this.props.width.slice(0, -2);
+                    _style2.default[effect].panel.width = _width + 'px';
+                } else {
+                    // Defaults
+                    _style2.default[effect].panel.width = this.props.width + 'px';
+                }
+            }
+            if (this.props && this.props.height) {
+                if (this.props.height.charAt(this.props.height.length - 1) === '%') {
+                    // Use Percentage
+                    var height = this.props.height.slice(0, -1);
+                    _style2.default[effect].panel.height = height + 'vh';
+                } else if (this.props.height.charAt(this.props.height.length - 1) === 'x') {
+                    // Use Pixels
+                    var _height = this.props.height.slice(0, -2);
+                    _style2.default[effect].panel.height = _height + 'px';
+                } else {
+                    // Defaults
+                    _style2.default[effect].panel.height = this.props.height + 'px';
+                }
+            }
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            return _react2.default.createElement(
+                'div',
+                null,
+                _react2.default.createElement(
+                    'div',
+                    { style: this.state.visible ? this.state.style.container : this.state.style.containerHidden },
+                    _react2.default.createElement(
+                        'div',
+                        { style: this.state.visible ? _extends({}, this.state.style.panel) : this.state.style.panelHidden },
+                        this.props.children
+                    ),
+                    _react2.default.createElement('div', { style: this.state.visible ? this.state.style.mask : this.state.style.maskHidden, onClick: this.props.onClickAway ? this.props.onClickAway : null })
+                )
+            );
+        }
+    }]);
+
+    return Modal;
+}(_react.Component);
+
+exports.default = Modal;
+
+/***/ }),
+
+/***/ "./node_modules/react-awesome-modal/lib/style.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/react-awesome-modal/lib/style.js ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+    value: true
+}));
+
+var _fadeInDown = __webpack_require__(/*! ./effect/fadeInDown */ "./node_modules/react-awesome-modal/lib/effect/fadeInDown.js");
+
+var _fadeInDown2 = _interopRequireDefault(_fadeInDown);
+
+var _fadeInUp = __webpack_require__(/*! ./effect/fadeInUp */ "./node_modules/react-awesome-modal/lib/effect/fadeInUp.js");
+
+var _fadeInUp2 = _interopRequireDefault(_fadeInUp);
+
+var _fadeInLeft = __webpack_require__(/*! ./effect/fadeInLeft */ "./node_modules/react-awesome-modal/lib/effect/fadeInLeft.js");
+
+var _fadeInLeft2 = _interopRequireDefault(_fadeInLeft);
+
+var _fadeInRight = __webpack_require__(/*! ./effect/fadeInRight */ "./node_modules/react-awesome-modal/lib/effect/fadeInRight.js");
+
+var _fadeInRight2 = _interopRequireDefault(_fadeInRight);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+    fadeInDown: _fadeInDown2.default,
+    fadeInUp: _fadeInUp2.default,
+    fadeInLeft: _fadeInLeft2.default,
+    fadeInRight: _fadeInRight2.default
+};
 
 /***/ }),
 
@@ -41443,9 +41987,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var _components_TextInput__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/TextInput */ "./src/components/TextInput/index.jsx");
-/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Switch/Switch.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Switch/Switch.js");
 /* harmony import */ var _utils_fetchWP__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./utils/fetchWP */ "./src/utils/fetchWP.js");
-/* harmony import */ var _backend_scss__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./backend.scss */ "./src/backend.scss");
+/* harmony import */ var _components_QuizModal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/QuizModal */ "./src/components/QuizModal/index.jsx");
+/* harmony import */ var _backend_scss__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./backend.scss */ "./src/backend.scss");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -41469,6 +42014,7 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -41501,7 +42047,7 @@ var SingleRow = function SingleRow(props) {
     value: props.item.quiz_number,
     min: 1
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: _backend_scss__WEBPACK_IMPORTED_MODULE_4__.default.icon
+    className: _backend_scss__WEBPACK_IMPORTED_MODULE_5__.default.icon
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
     onClick: props.addNew,
     className: "dashicons dashicons-plus-alt2"
@@ -41574,6 +42120,18 @@ var App = /*#__PURE__*/function (_React$Component) {
       });
     });
 
+    _defineProperty(_assertThisInitialized(_this), "saveNext", function () {
+      _this.setState({
+        quizModal: !_this.state.quizModal ? true : false
+      });
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "modalHandler", function (e) {
+      _this.setState({
+        quizModal: !_this.state.quizModal ? true : false
+      });
+    });
+
     _this.state = {
       loader: false,
       saving: false,
@@ -41635,6 +42193,11 @@ var App = /*#__PURE__*/function (_React$Component) {
         });
       });
     }
+    /**
+     * Fire Save & Next button 
+     * & open quiz popup
+     */
+
   }, {
     key: "render",
     value: function render() {
@@ -41646,13 +42209,13 @@ var App = /*#__PURE__*/function (_React$Component) {
           newcourse = _this$state.newcourse,
           temp_topics = _this$state.temp_topics;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: _backend_scss__WEBPACK_IMPORTED_MODULE_4__.default.tlqmWrap
+        className: _backend_scss__WEBPACK_IMPORTED_MODULE_5__.default.tlqmWrap
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, __('Tutor LMS Quiz Mixer', 'tutor-lms-quiz-mixer')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: _backend_scss__WEBPACK_IMPORTED_MODULE_4__.default.formWrap
+        className: _backend_scss__WEBPACK_IMPORTED_MODULE_5__.default.formWrap
       }, temp_quizes.map(function (k, v) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           key: v,
-          className: _backend_scss__WEBPACK_IMPORTED_MODULE_4__.default.row
+          className: _backend_scss__WEBPACK_IMPORTED_MODULE_5__.default.row
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(SingleRow, {
           key: v,
           index: v,
@@ -41662,7 +42225,7 @@ var App = /*#__PURE__*/function (_React$Component) {
           addNew: _this3.addNewRow
         })));
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: _backend_scss__WEBPACK_IMPORTED_MODULE_4__.default.row
+        className: _backend_scss__WEBPACK_IMPORTED_MODULE_5__.default.row
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, this.state.newcourse ? __('Course Title', 'tutor-lms-quiz-mixer') : __('Search course', 'tutor-lms-quiz-mixer')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, this.state.newcourse ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_TextInput__WEBPACK_IMPORTED_MODULE_2__.default, {
         type: "text",
         onChange: this.handleInputChange,
@@ -41675,15 +42238,15 @@ var App = /*#__PURE__*/function (_React$Component) {
         name: "temp_course",
         value: this.state.temp_course
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, __('New Course?', 'tutor-lms-quiz-mixer')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: _backend_scss__WEBPACK_IMPORTED_MODULE_4__.default.switcher
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
+        className: _backend_scss__WEBPACK_IMPORTED_MODULE_5__.default.switcher
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
         size: "small",
         checked: this.state.newcourse,
         onClick: function onClick(e) {
           return _this3.handleInputChange(e, false, 'switch', 'newcourse');
         }
       })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: _backend_scss__WEBPACK_IMPORTED_MODULE_4__.default.row
+        className: _backend_scss__WEBPACK_IMPORTED_MODULE_5__.default.row
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, __('Select Topic', 'tutor-lms-quiz-mixer')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_TextInput__WEBPACK_IMPORTED_MODULE_2__.default, {
         type: "select",
         options: temp_topics,
@@ -41691,12 +42254,35 @@ var App = /*#__PURE__*/function (_React$Component) {
         name: "temp_select_topic",
         value: this.state.temp_select_topic
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, __('Order', 'tutor-lms-quiz-mixer')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: _backend_scss__WEBPACK_IMPORTED_MODULE_4__.default.switcher
+        className: _backend_scss__WEBPACK_IMPORTED_MODULE_5__.default.switcher
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_TextInput__WEBPACK_IMPORTED_MODULE_2__.default, {
         type: "number",
         name: "topics_order",
-        value: 5
-      })))))));
+        min: 1,
+        value: this.state.topics_order ? this.state.topics_order : 1,
+        onChange: this.handleInputChange
+      })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+        className: "open-tutor-quiz-modal button button-primary",
+        "data-quiz-id": "76",
+        "data-topic-id": "75"
+      }, __('Save & Next', 'tutor-lms-quiz-mixer')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        "class": "tutor-modal-wrap tutor-quiz-builder-modal-wrap show"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        "class": "tutor-modal-content"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        "class": "modal-header"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        "class": "modal-title"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Quiz")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        "class": "modal-close-wrap"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+        href: "javascript:;",
+        "class": "modal-close-btn"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
+        "class": "tutor-icon-line-cross"
+      }), " "))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        "class": "modal-container"
+      }))))));
     }
   }]);
 

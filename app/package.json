@@ -67,6 +67,7 @@
     "npm-check-updates": "^10.2.1",
     "rc-datetime-picker": "^1.6.1",
     "react": "^17.0.1",
+    "react-awesome-modal": "^2.0.5",
     "react-color": "^2.19.3",
     "react-custom-scroll": "^4.2.1",
     "react-day-picker": "^7.4.8",

@@ -2,9 +2,9 @@ import React from "react";
 import {HashRouter, Route} from 'react-router-dom'
 import ReactDOM from "react-dom";
 import TextInput from './components/TextInput';
-import { Switch } from '@material-ui/core';
+import { Button, IconButton, Switch } from '@material-ui/core';
 import FetchWP from './utils/fetchWP';
-
+import QuizModal from './components/QuizModal';
 
 import style from './backend.scss';
 const { __ } = window.wp.i18n;
@@ -202,6 +202,32 @@ class App extends React.Component {
 
     }
 
+
+    /**
+     * Fire Save & Next button 
+     * & open quiz popup
+     */
+    saveNext =()=>{
+        this.setState(
+            {
+                quizModal: !this.state.quizModal ? true : false
+            }
+        )
+    }
+
+    /**
+     * 
+     * @param {default event} e 
+     * Quiz modal handler
+     */
+    modalHandler = (e) => {
+        this.setState(
+            {
+                quizModal: !this.state.quizModal ? true : false
+            }
+        )
+    }
+
     render() {
         const {config, temp_quizes, newcourse, temp_topics} = this.state;
         return (
@@ -304,14 +330,42 @@ class App extends React.Component {
                                         <TextInput 
                                             type="number"
                                             name="topics_order"
-                                            value={5}
+                                            min={1}
+                                            value={this.state.topics_order ? this.state.topics_order : 1}
+                                            onChange={this.handleInputChange}
                                         />
                                     </div>
                                 </div>
                             </div>  
                             {/* End Topics */}
 
-
+                            {/* Save Button */}
+                            {/* <Button variant="contained" color="primary" onClick={(e) => this.saveNext}>
+                                {__('Save & Next', 'tutor-lms-quiz-mixer')}
+                            </Button> */}
+                            <button className="open-tutor-quiz-modal button button-primary" data-quiz-id="76" data-topic-id="75">
+                            {__('Save & Next', 'tutor-lms-quiz-mixer')}
+                            </button>
+                            {/* {
+                                !this.state.quizModal 
+                                ? 
+                                <QuizModal modalHandler={this.modalHandler} /> 
+                                : 
+                                null
+                            } */}
+                            <div class="tutor-modal-wrap tutor-quiz-builder-modal-wrap show">
+    <div class="tutor-modal-content">
+        <div class="modal-header">
+            <div class="modal-title">
+                <h1>Quiz</h1>
+            </div>
+            <div class="modal-close-wrap">
+                <a href="javascript:;" class="modal-close-btn"><i class="tutor-icon-line-cross"></i> </a>
+            </div>
+        </div>
+        <div class="modal-container"></div>
+    </div>
+</div>
                     </div>
                 </div>
             </div>
