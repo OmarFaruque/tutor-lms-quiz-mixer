@@ -50,7 +50,7 @@ class TLQM_Api
         $this->prefix = $this->wpdb->prefix;
 
 
-        add_action('wp_head', array($this, 'tlqmTopics'));
+        // add_action('wp_head', array($this, 'tlqmTopics'));
 
         add_action(
             'rest_api_init',
@@ -76,11 +76,85 @@ class TLQM_Api
                     )
                 );
 
+
+                /** Save Mixed Quizes */
+                register_rest_route(
+                    $this->token . '/v1',
+                    '/save_mixed_quiz/',
+                    array(
+                        'methods' => 'POST',
+                        'callback' => array($this, 'tlqm_save_mixed_quizes'),
+                        'permission_callback' => array($this, 'getPermission'),
+                    )
+                );
+
             }
         );
     }
 
 
+
+    /**
+     * @param data as array
+     * return success message
+     */
+    public function tlqm_save_mixed_quizes($data){
+
+        // $quiz = array_map(function($v){
+        //     return (int)$v['quiz'];
+        // }, $data['quiz']);
+
+        $new_quiz_id = wp_insert_post( 
+            array(
+                'post_title' => !empty($data['quiz_title']) ? $data['quiz_title'] : __('New Quiz', 'tutor-lms-quiz-mixer'), 
+                'post_type' => 'tutor_quiz',
+                'post_status' => 'publish',
+                'post_parent' => (int)$data['topic'], 
+                'menu_order' => (int)$data['order']
+            )
+        ); 
+
+        
+        $newQuestions = array();
+        if($new_quiz_id){
+            foreach($data['quiz'] as $single){
+                $qry = $this->wpdb->prepare( 'SELECT q.* FROM '.$this->prefix.'tutor_quiz_questions q WHERE q.`quiz_id`=%d ORDER BY RAND() LIMIT %d', (int)$single['quiz'], (int)$single['quiz_number'] );
+                $results = $this->wpdb->get_results($qry, OBJECT);
+                foreach($results as $s){
+                    array_push($newQuestions, $s);
+                    $insert = $this->wpdb->insert(
+                        $this->prefix . 'tutor_quiz_questions', 
+                        array(
+                            'quiz_id' => $new_quiz_id, 
+                            'question_title' => $s->question_title, 
+                            'question_description' => $s->question_description, 
+                            'question_type' => $s->question_type, 
+                            'question_mark' => $s->question_mark, 
+                            'question_settings' => $s->question_settings, 
+                            'question_order' => $s->question_order
+                        )  
+                    );
+                }
+            }
+        }
+
+        
+
+        $return = array(
+            'quiz' => $data['quiz'], 
+            'course' => $data['course'], 
+            'topic' => $data['topic'], 
+            'newcourse' => $data['newcourse'], 
+            'newQuestions' => $newQuestions
+            
+        );
+
+
+        
+
+
+        return new WP_REST_Response($return, 200);
+    }
 
     /**
      * @param course id

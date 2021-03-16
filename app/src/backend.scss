@@ -11,7 +11,13 @@
 
 .tlqmWrap{
   display: block;
+ 
   .formWrap{
+    .modalWrap{
+      a{
+        text-decoration: none;
+      }
+    }
     button{
       text-align: right;
       margin-left: auto;

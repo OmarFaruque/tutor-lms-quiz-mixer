@@ -10021,7 +10021,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 // extracted by mini-css-extract-plugin
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({"tlqmWrap":"acotrs_tlqmWrap2tVnE","formWrap":"acotrs_formWrap3_1Hi","row":"acotrs_rowwj7Rv","switcher":"acotrs_switcherdfo9K"});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({"tlqmWrap":"acotrs_tlqmWrap2tVnE","formWrap":"acotrs_formWrap3_1Hi","modalWrap":"acotrs_modalWrap3XdaJ","row":"acotrs_rowwj7Rv","switcher":"acotrs_switcherdfo9K"});
 
 /***/ }),
 
@@ -42082,12 +42082,14 @@ var App = /*#__PURE__*/function (_React$Component) {
       var name = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : '';
       var temp_quizes = _this.state.temp_quizes;
 
-      if (index) {
+      if (typeof index == 'number') {
         temp_quizes[index][e.target.name] = e.target.value;
 
         _this.setState({
           temp_quizes: temp_quizes
         });
+
+        console.log('temp quiz: ', _this.state.temp_quizes);
       } else {
         if (type == 'switch') {
           _this.setState(_defineProperty({}, name, !_this.state[name] ? true : false));
@@ -42120,9 +42122,18 @@ var App = /*#__PURE__*/function (_React$Component) {
       });
     });
 
-    _defineProperty(_assertThisInitialized(_this), "saveNext", function () {
-      _this.setState({
-        quizModal: !_this.state.quizModal ? true : false
+    _defineProperty(_assertThisInitialized(_this), "saveNext", function (e) {
+      var data = {
+        quiz: _this.state.temp_quizes,
+        course: _this.state.temp_course,
+        topic: _this.state.temp_select_topic,
+        newcourse: _this.state.newcourse,
+        quiz_title: _this.state.temp_quiz_title,
+        order: _this.state.topics_order
+      };
+
+      _this.fetchWP.post('save_mixed_quiz/', data).then(function (json) {
+        console.log('save mixed quiz data return: ', json);
       });
     });
 
@@ -42139,6 +42150,7 @@ var App = /*#__PURE__*/function (_React$Component) {
       temp_course: false,
       temp_topics: false,
       temp_select_topic: false,
+      temp_quiz_title: __('New Quiz', 'tutor-lms-quiz-mixer'),
       config: {
         general: {
           title: ''
@@ -42183,13 +42195,19 @@ var App = /*#__PURE__*/function (_React$Component) {
         loader: true
       });
       this.fetchWP.get('config/').then(function (json) {
-        console.log('json: ', json.topics.data);
+        console.log('json: ', json.quizes); // console.log('first quize: ', Object.keys(json.quizes)[0])
 
         _this2.setState({
           loader: false,
           config: json,
           temp_course: Object.keys(json.courses)[0],
-          temp_topics: json.topics.data
+          temp_topics: json.topics.data,
+          temp_select_topic: Object.keys(json.topics.data)[0],
+          temp_quizes: [{
+            quiz_name: '',
+            quiz_number: 1,
+            quiz: Object.keys(json.quizes)[0]
+          }]
         });
       });
     }
@@ -42226,6 +42244,15 @@ var App = /*#__PURE__*/function (_React$Component) {
         })));
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: _backend_scss__WEBPACK_IMPORTED_MODULE_5__.default.row
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, __('Quiz Title', 'tutor-lms-quiz-mixer')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_TextInput__WEBPACK_IMPORTED_MODULE_2__.default, {
+        type: "text",
+        onChange: this.handleInputChange,
+        name: "temp_quiz_title",
+        value: this.state.temp_quiz_title
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: _backend_scss__WEBPACK_IMPORTED_MODULE_5__.default.switcher
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: _backend_scss__WEBPACK_IMPORTED_MODULE_5__.default.row
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, this.state.newcourse ? __('Course Title', 'tutor-lms-quiz-mixer') : __('Search course', 'tutor-lms-quiz-mixer')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, this.state.newcourse ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_TextInput__WEBPACK_IMPORTED_MODULE_2__.default, {
         type: "text",
         onChange: this.handleInputChange,
@@ -42247,42 +42274,52 @@ var App = /*#__PURE__*/function (_React$Component) {
         }
       })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: _backend_scss__WEBPACK_IMPORTED_MODULE_5__.default.row
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, __('Select Topic', 'tutor-lms-quiz-mixer')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_TextInput__WEBPACK_IMPORTED_MODULE_2__.default, {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, this.state.newcourse || temp_topics.length <= 0 ? __('Topic Title', 'tutor-lms-quiz-mixer') : __('Select Topic', 'tutor-lms-quiz-mixer')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, this.state.newcourse || temp_topics.length <= 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_TextInput__WEBPACK_IMPORTED_MODULE_2__.default, {
+        type: "text",
+        onChange: this.handleInputChange,
+        name: "temp_select_topic",
+        value: this.state.temp_select_topic ? this.state.temp_select_topic : ''
+      }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_TextInput__WEBPACK_IMPORTED_MODULE_2__.default, {
         type: "select",
         options: temp_topics,
         onChange: this.handleInputChange,
         name: "temp_select_topic",
         value: this.state.temp_select_topic
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, __('Order', 'tutor-lms-quiz-mixer')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, this.state.newcourse || temp_topics.length <= 0 ? null : __('Order', 'tutor-lms-quiz-mixer')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: _backend_scss__WEBPACK_IMPORTED_MODULE_5__.default.switcher
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_TextInput__WEBPACK_IMPORTED_MODULE_2__.default, {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, this.state.newcourse || temp_topics.length <= 0 ? null : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_TextInput__WEBPACK_IMPORTED_MODULE_2__.default, {
         type: "number",
         name: "topics_order",
-        min: 1,
-        value: this.state.topics_order ? this.state.topics_order : 1,
+        min: 0,
+        value: this.state.topics_order ? this.state.topics_order : 0,
         onChange: this.handleInputChange
       })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         className: "open-tutor-quiz-modal button button-primary",
+        onClick: function onClick(e) {
+          return _this3.saveNext(e);
+        },
         "data-quiz-id": "76",
-        "data-topic-id": "75"
+        "data-topic-id": this.state.temp_select_topic
       }, __('Save & Next', 'tutor-lms-quiz-mixer')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        "class": "tutor-modal-wrap tutor-quiz-builder-modal-wrap show"
+        className: _backend_scss__WEBPACK_IMPORTED_MODULE_5__.default.modalWrap
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        "class": "tutor-modal-content"
+        className: "tutor-modal-wrap tutor-quiz-builder-modal-wrap"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        "class": "modal-header"
+        className: "tutor-modal-content"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        "class": "modal-title"
+        className: "modal-header"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "modal-title"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Quiz")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        "class": "modal-close-wrap"
+        className: "modal-close-wrap"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
         href: "javascript:;",
-        "class": "modal-close-btn"
+        className: "modal-close-btn"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
-        "class": "tutor-icon-line-cross"
+        className: "tutor-icon-line-cross"
       }), " "))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        "class": "modal-container"
-      }))))));
+        className: "modal-container"
+      })))))));
     }
   }]);
 

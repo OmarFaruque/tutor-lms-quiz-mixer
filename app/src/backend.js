@@ -69,6 +69,7 @@ class App extends React.Component {
             temp_course: false,
             temp_topics: false,
             temp_select_topic: false,
+            temp_quiz_title: __('New Quiz', 'tutor-lms-quiz-mixer'),
             config: {
                 general: {title: ''},
                 page2: {title: ''}
@@ -122,17 +123,17 @@ class App extends React.Component {
      * Handle all input change event
      */
     handleInputChange = (e, index = false, type='', name='') => {
-        
-
+         
         const {temp_quizes} = this.state;
-
-        if(index){
+        
+        if(typeof index == 'number'){
             temp_quizes[index][e.target.name] = e.target.value;
             this.setState(
                 {
                     temp_quizes: temp_quizes
                 }
             )
+            console.log('temp quiz: ', this.state.temp_quizes)
         }else{
             if(type == 'switch'){
                 this.setState({
@@ -190,12 +191,21 @@ class App extends React.Component {
         this.fetchWP.get('config/')
             .then(
                 (json) => {
-                    console.log('json: ', json.topics.data);
+                    console.log('json: ', json.quizes);
+                    // console.log('first quize: ', Object.keys(json.quizes)[0])
                     this.setState({
                         loader: false,
                         config: json,
                         temp_course: Object.keys(json.courses)[0], 
-                        temp_topics: json.topics.data
+                        temp_topics: json.topics.data, 
+                        temp_select_topic: Object.keys(json.topics.data)[0],
+                        temp_quizes: [
+                            {
+                                quiz_name: '', 
+                                quiz_number: 1, 
+                                quiz: Object.keys(json.quizes)[0]
+                            }
+                        ]
                     });
                 });
 
@@ -207,12 +217,22 @@ class App extends React.Component {
      * Fire Save & Next button 
      * & open quiz popup
      */
-    saveNext =()=>{
-        this.setState(
-            {
-                quizModal: !this.state.quizModal ? true : false
+    saveNext =(e)=>{
+        let data = {
+            quiz: this.state.temp_quizes, 
+            course: this.state.temp_course, 
+            topic: this.state.temp_select_topic,
+            newcourse: this.state.newcourse, 
+            quiz_title: this.state.temp_quiz_title, 
+            order: this.state.topics_order
+        }
+        this.fetchWP.post('save_mixed_quiz/', data)
+        .then(
+            (json) => {
+                console.log('save mixed quiz data return: ', json)
             }
         )
+
     }
 
     /**
@@ -255,6 +275,35 @@ class App extends React.Component {
                                         )
                                     })
                             }
+
+                            {/* New Quiz Title */}
+                            <div className={style.row}>
+                                <div>
+                                    { __('Quiz Title', 'tutor-lms-quiz-mixer')}
+                                </div>
+
+                                {/* Course selector */}
+                                <div>  
+                                        <TextInput
+                                            type="text"
+                                            onChange={this.handleInputChange}
+                                            name="temp_quiz_title"
+                                            value={this.state.temp_quiz_title}
+                                        />
+                                      
+                                </div>
+
+                                {/* Counter  */}
+                                <div>
+                                    
+                                </div>
+
+                                {/* Action */}
+                                <div className={style.switcher}>
+                                    <div>
+                                    </div>
+                                </div>
+                            </div>  
 
                             {/* Course */}
                             <div className={style.row}>
@@ -305,45 +354,58 @@ class App extends React.Component {
                             {/* Topics */}
                             <div className={style.row}>
                                 <div>
-                                   {__('Select Topic', 'tutor-lms-quiz-mixer')}
+                                    {this.state.newcourse || temp_topics.length <= 0 ? __('Topic Title', 'tutor-lms-quiz-mixer') : __('Select Topic', 'tutor-lms-quiz-mixer')}
                                 </div>
 
                                 {/* Course selector */}
                                 <div>
-                                        <TextInput
-                                            type="select"
-                                            options={temp_topics}
-                                            onChange={this.handleInputChange}
-                                            name="temp_select_topic"
-                                            value={this.state.temp_select_topic}
-                                        />
+                                        {
+                                            this.state.newcourse || temp_topics.length <= 0 ? 
+                                                <TextInput
+                                                type="text"
+                                                onChange={this.handleInputChange}
+                                                name="temp_select_topic"
+                                                value={this.state.temp_select_topic ? this.state.temp_select_topic : '' }
+                                                />
+                                            :
+                                                <TextInput
+                                                type="select"
+                                                options={temp_topics}
+                                                onChange={this.handleInputChange}
+                                                name="temp_select_topic"
+                                                value={this.state.temp_select_topic}
+                                                />
+                                        }
                                 </div>
+
 
                                 {/* Counter  */}
                                 <div>
-                                    {__('Order', 'tutor-lms-quiz-mixer')}
+                                    { this.state.newcourse || temp_topics.length <= 0 ? null : __('Order', 'tutor-lms-quiz-mixer')}
                                 </div>
 
                                 {/* Action */}
                                 <div className={style.switcher}>
                                     <div>
-                                        <TextInput 
+                                        {
+                                            this.state.newcourse || temp_topics.length <= 0 ? null :
+                                            <TextInput 
                                             type="number"
                                             name="topics_order"
-                                            min={1}
-                                            value={this.state.topics_order ? this.state.topics_order : 1}
+                                            min={0}
+                                            value={this.state.topics_order ? this.state.topics_order : 0}
                                             onChange={this.handleInputChange}
-                                        />
+                                            />
+                                        }
                                     </div>
                                 </div>
+
+
                             </div>  
                             {/* End Topics */}
 
                             {/* Save Button */}
-                            {/* <Button variant="contained" color="primary" onClick={(e) => this.saveNext}>
-                                {__('Save & Next', 'tutor-lms-quiz-mixer')}
-                            </Button> */}
-                            <button className="open-tutor-quiz-modal button button-primary" data-quiz-id="76" data-topic-id="75">
+                            <button className="open-tutor-quiz-modal button button-primary" onClick={(e) => this.saveNext(e)} data-quiz-id="76" data-topic-id={this.state.temp_select_topic}>
                             {__('Save & Next', 'tutor-lms-quiz-mixer')}
                             </button>
                             {/* {
@@ -353,19 +415,21 @@ class App extends React.Component {
                                 : 
                                 null
                             } */}
-                            <div class="tutor-modal-wrap tutor-quiz-builder-modal-wrap show">
-    <div class="tutor-modal-content">
-        <div class="modal-header">
-            <div class="modal-title">
-                <h1>Quiz</h1>
-            </div>
-            <div class="modal-close-wrap">
-                <a href="javascript:;" class="modal-close-btn"><i class="tutor-icon-line-cross"></i> </a>
-            </div>
-        </div>
-        <div class="modal-container"></div>
-    </div>
-</div>
+                            <div className={style.modalWrap}>
+                                <div className="tutor-modal-wrap tutor-quiz-builder-modal-wrap">
+                                    <div className="tutor-modal-content">
+                                        <div className="modal-header">
+                                            <div className="modal-title">
+                                                <h1>Quiz</h1>
+                                            </div>
+                                            <div className="modal-close-wrap">
+                                                <a href="javascript:;" className="modal-close-btn"><i className="tutor-icon-line-cross"></i> </a>
+                                            </div>
+                                        </div>
+                                        <div className="modal-container"></div>
+                                    </div>
+                                </div>
+                            </div>
                     </div>
                 </div>
             </div>
