@@ -24,6 +24,9 @@
       margin-top: 40px;
       display: block;
       margin-bottom: 10px;
+      &.ajaxBtn{
+        display: none !important;
+      }
     }
     padding: 25px;
     border: 1px solid #eee;

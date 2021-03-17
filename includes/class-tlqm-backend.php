@@ -3,7 +3,7 @@
 /**
  * Load Backend related actions
  *
- * @class   ACOTRS_Backend
+ * @class   TLQM_Backend
  */
 
 if (!defined('ABSPATH')) {
@@ -113,23 +113,28 @@ class TLQM_Backend
         $this->assets_url = esc_url(trailingslashit(plugins_url('/assets/', $this->file)));
         $plugin = plugin_basename($this->file);
 
-        // add action links to link to link list display on the plugins page.
-        add_filter("plugin_action_links_$plugin", array($this, 'pluginActionLinks'));
 
-        // reg activation hook.
-        register_activation_hook($this->file, array($this, 'install'));
-        // reg deactivation hook.
-        register_deactivation_hook($this->file, array($this, 'deactivation'));
+        if($this->isTutorActivated()):
+            // add action links to link to link list display on the plugins page.
+            add_filter("plugin_action_links_$plugin", array($this, 'pluginActionLinks'));
 
-        // reg admin menu.
-        add_action('admin_menu', array($this, 'registerRootPage'), 30);
+            // reg activation hook.
+            register_activation_hook($this->file, array($this, 'install'));
+            // reg deactivation hook.
+            register_deactivation_hook($this->file, array($this, 'deactivation'));
 
-        // Init functions, you can use it for posttype registration and all.
+            // reg admin menu.
+            add_action('admin_menu', array($this, 'registerRootPage'), 30);
+
+            // Init functions, you can use it for posttype registration and all.
 
 
-        // enqueue scripts & styles.
-        add_action('admin_enqueue_scripts', array($this, 'adminEnqueueScripts'), 10, 1);
-        add_action('admin_enqueue_scripts', array($this, 'adminEnqueueStyles'), 10, 1);
+            // enqueue scripts & styles.
+            add_action('admin_enqueue_scripts', array($this, 'adminEnqueueScripts'), 10, 1);
+            add_action('admin_enqueue_scripts', array($this, 'adminEnqueueStyles'), 10, 1);
+        else:
+            add_action( 'admin_init',  array($this, 'noticeNeedTutorLMS'));
+        endif;
     }
 
     /**
@@ -167,19 +172,19 @@ class TLQM_Backend
     }
 
     /**
-     * Check if woocommerce is activated
+     * Check if tutorLMS is activated
      *
      * @access  public
-     * @return  boolean woocommerce install status
+     * @return  boolean tutorLMS install status
      */
-    public function isWoocommerceActivated()
+    public function isTutorActivated()
     {
-        if (in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_option('active_plugins')))) {
+        if (in_array('tutor/tutor.php', apply_filters('active_plugins', get_option('active_plugins')))) {
             return true;
         }
         if (is_multisite()) {
             $plugins = get_site_option('active_sitewide_plugins');
-            if (isset($plugins['woocommerce/woocommerce.php'])) {
+            if (isset($plugins['tutor/tutor.php'])) {
                 return true;
             }
         }
@@ -198,21 +203,23 @@ class TLQM_Backend
     }
 
     /**
-     * WooCommerce not active notice.
+     * Tutor LMS not active notice.
      *
      * @access  public
      * @return void Fallack notice.
      */
-    public function noticeNeedWoocommerce()
+    public function noticeNeedTutorLMS()
     {
 
         $error = sprintf(
         /* translators: %s: Plugin Name. */
             __(
-                '%s requires <a href="http://wordpress.org/extend/plugins/woocommerce/">WooCommerce</a> to be installed & activated!',
+                '%s requires <a href="https://wordpress.org/plugins/tutor/">%s</a> %s!',
                 'tutor-lms-quiz-mixer'
             ),
-            ACOTRS_PLUGIN_NAME
+            TLQM_PLUGIN_NAME, 
+            __('Tutor LMS', 'tutor-lms-quiz-mixer'), 
+            __('to be installed & activated', 'tutor-lms-quiz-mixer')
         );
 
         echo ('<div class="error"><p>' . $error . '</p></div>');

@@ -1,10 +1,10 @@
 import React from "react";
-import {HashRouter, Route} from 'react-router-dom'
 import ReactDOM from "react-dom";
 import TextInput from './components/TextInput';
-import { Button, IconButton, Switch } from '@material-ui/core';
+import { Button, Switch } from '@material-ui/core';
 import FetchWP from './utils/fetchWP';
-import QuizModal from './components/QuizModal';
+
+
 
 import style from './backend.scss';
 const { __ } = window.wp.i18n;
@@ -69,6 +69,7 @@ class App extends React.Component {
             temp_course: false,
             temp_topics: false,
             temp_select_topic: false,
+            new_quiz_id: false,
             temp_quiz_title: __('New Quiz', 'tutor-lms-quiz-mixer'),
             config: {
                 general: {title: ''},
@@ -133,11 +134,12 @@ class App extends React.Component {
                     temp_quizes: temp_quizes
                 }
             )
-            console.log('temp quiz: ', this.state.temp_quizes)
         }else{
             if(type == 'switch'){
                 this.setState({
-                    [name]: !this.state[name]? true : false
+                    [name]: !this.state[name]? true : false, 
+                    temp_select_topic: '', 
+                    temp_course: ''
                 })
             }
             else if(e.target.type == 'select-one' && e.target.name == 'temp_course'){
@@ -191,8 +193,6 @@ class App extends React.Component {
         this.fetchWP.get('config/')
             .then(
                 (json) => {
-                    console.log('json: ', json.quizes);
-                    // console.log('first quize: ', Object.keys(json.quizes)[0])
                     this.setState({
                         loader: false,
                         config: json,
@@ -229,10 +229,12 @@ class App extends React.Component {
         this.fetchWP.post('save_mixed_quiz/', data)
         .then(
             (json) => {
-                console.log('save mixed quiz data return: ', json)
+                this.setState({
+                    new_quiz_id: json.quiz_id
+                })
+                document.getElementById('parentClickEvent').click()
             }
         )
-
     }
 
     /**
@@ -259,11 +261,12 @@ class App extends React.Component {
 
                             {
                                     temp_quizes.map((k, v) => {
+                                        var key = 'key_' + (v + 1);
                                         return(
                                             <>
-                                                <div key={v} className={style.row}>
+                                                <div key={key.toString()} className={style.row}>
                                                     <SingleRow 
-                                                        key={v} 
+                                                        key={key.toString()} 
                                                         index={v} 
                                                         item={temp_quizes[v]} 
                                                         handleInputChange={this.handleInputChange} 
@@ -405,25 +408,24 @@ class App extends React.Component {
                             {/* End Topics */}
 
                             {/* Save Button */}
-                            <button className="open-tutor-quiz-modal button button-primary" onClick={(e) => this.saveNext(e)} data-quiz-id="76" data-topic-id={this.state.temp_select_topic}>
+                            
+                            <Button onClick={(e) => this.saveNext(e)} variant="contained" color="primary">
+                                {__('Save & Next', 'tutor-lms-quiz-mixer')}
+                            </Button>
+                            
+                            
+                            <button id="parentClickEvent" className={style.ajaxBtn + " open-tutor-quiz-modal button button-primary"} ref={this.parentClickEvent} data-quiz-id={this.state.new_quiz_id ? this.state.new_quiz_id : null} data-topic-id={this.state.temp_select_topic}>
                             {__('Save & Next', 'tutor-lms-quiz-mixer')}
                             </button>
-                            {/* {
-                                !this.state.quizModal 
-                                ? 
-                                <QuizModal modalHandler={this.modalHandler} /> 
-                                : 
-                                null
-                            } */}
                             <div className={style.modalWrap}>
                                 <div className="tutor-modal-wrap tutor-quiz-builder-modal-wrap">
                                     <div className="tutor-modal-content">
                                         <div className="modal-header">
                                             <div className="modal-title">
-                                                <h1>Quiz</h1>
+                                                <h1>{__('Quiz', 'tutor-lms-quiz-mixer')}</h1>
                                             </div>
                                             <div className="modal-close-wrap">
-                                                <a href="javascript:;" className="modal-close-btn"><i className="tutor-icon-line-cross"></i> </a>
+                                                <a href="#" className="modal-close-btn"><i className="tutor-icon-line-cross"></i> </a>
                                             </div>
                                         </div>
                                         <div className="modal-container"></div>

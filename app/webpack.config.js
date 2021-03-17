@@ -85,7 +85,7 @@ module: {
                     loader: 'css-loader',
                     options: {
                         modules: {
-                            localIdentName: 'acotrs_[local][hash:base64:5]',
+                            localIdentName: 'tlqm_[local][hash:base64:5]',
                         },
 
                     }

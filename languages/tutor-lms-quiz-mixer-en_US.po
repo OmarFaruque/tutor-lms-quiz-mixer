@@ -7,42 +7,46 @@ msgstr ""
 msgid "Select Quizzes"
 msgstr ""
 
-#: src/backend.js:256
+#: src/backend.js:258
 msgid "Tutor LMS Quiz Mixer"
 msgstr ""
 
-#: src/backend.js:282
+#: src/backend.js:285
 msgid "Quiz Title"
 msgstr ""
 
-#: src/backend.js:312
+#: src/backend.js:315
 msgid "Course Title"
 msgstr ""
 
-#: src/backend.js:312
+#: src/backend.js:315
 msgid "Search course"
 msgstr ""
 
-#: src/backend.js:341
+#: src/backend.js:344
 msgid "New Course?"
 msgstr ""
 
-#: src/backend.js:357
+#: src/backend.js:360
 msgid "Topic Title"
 msgstr ""
 
-#: src/backend.js:357
+#: src/backend.js:360
 msgid "Select Topic"
 msgstr ""
 
-#: src/backend.js:384
+#: src/backend.js:387
 msgid "Order"
 msgstr ""
 
-#: src/backend.js:409
+#: src/backend.js:418
 msgid "Save & Next"
 msgstr ""
 
-#: src/backend.js:72
+#: src/backend.js:425
+msgid "Quiz"
+msgstr ""
+
+#: src/backend.js:73
 msgid "New Quiz"
 msgstr ""

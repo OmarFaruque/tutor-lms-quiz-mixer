@@ -18,6 +18,7 @@ define('TLQM_VERSION', '1.0.0');
 define('TLQM_FILE', __FILE__);
 define('TLQM_PLUGIN_NAME', 'Tutor LMS Quiz Mixer');
 
+
 // Helpers.
 require_once realpath(plugin_dir_path(__FILE__)) . DIRECTORY_SEPARATOR . 'includes/helpers.php';
 
@@ -52,20 +53,13 @@ spl_autoload_register('tlqm_autoloader');
 
 // Backend UI.
 if (!function_exists('TLQM_Backend')) {
+
     function TLQM_Backend()
     {
         return TLQM_Backend::instance(__FILE__);
     }
 }
 
-// if (!function_exists('ACOTRS_Public')) {
-//     function ACOTRS_Public()
-//     {
-//         return ACOTRS_Public::instance(__FILE__);
-//     }
-// }
-// Front end.
-// ACOTRS_Public();
 
 if (is_admin()) {
     TLQM_Backend();

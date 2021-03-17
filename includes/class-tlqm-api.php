@@ -99,10 +99,29 @@ class TLQM_Api
      * return success message
      */
     public function tlqm_save_mixed_quizes($data){
+        /** Create New Course */
+        if($data['newcourse'] && !empty($data['course'])){
+            $course_id = wp_insert_post( 
+                array(
+                    'post_title' => $data['course'], 
+                    'post_type' => 'courses', 
+                    'post_status' => 'publish'
+                )
+            );
 
-        // $quiz = array_map(function($v){
-        //     return (int)$v['quiz'];
-        // }, $data['quiz']);
+            /**Create New Topic for new created course */
+            if($course_id){
+                $topic_id = wp_insert_post( 
+                    array(
+                        'post_title' => $data['topic'], 
+                        'post_type' => 'topics', 
+                        'post_status' => 'publish', 
+                        'post_parent' => $course_id, 
+                    )
+                );
+                if($topic_id) $data['topic'] = $topic_id;
+            }
+        }
 
         $new_quiz_id = wp_insert_post( 
             array(
@@ -141,12 +160,8 @@ class TLQM_Api
         
 
         $return = array(
-            'quiz' => $data['quiz'], 
-            'course' => $data['course'], 
-            'topic' => $data['topic'], 
-            'newcourse' => $data['newcourse'], 
-            'newQuestions' => $newQuestions
-            
+            'quiz_id' => $new_quiz_id, 
+            'newcourse' => $data['newcourse']
         );
 
 
