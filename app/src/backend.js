@@ -143,16 +143,17 @@ class App extends React.Component {
                 })
             }
             else if(e.target.type == 'select-one' && e.target.name == 'temp_course'){
+                
                 let course_id = {
                     course_id: e.target.value
                 }
                 this.fetchWP.post('get_topics/', course_id)
                 .then(
                     (json) => {
-                        
                         this.setState({
                             [e.target.name]: e.target.value, 
-                            temp_topics: json
+                            temp_topics: json, 
+                            temp_select_topic: Object.keys(json)[0]
                         })
                     })
     

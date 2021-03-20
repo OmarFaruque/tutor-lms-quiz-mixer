@@ -134,13 +134,12 @@ class TLQM_Api
         ); 
 
         
-        $newQuestions = array();
+        
         if($new_quiz_id){
             foreach($data['quiz'] as $single){
                 $qry = $this->wpdb->prepare( 'SELECT q.* FROM '.$this->prefix.'tutor_quiz_questions q WHERE q.`quiz_id`=%d ORDER BY RAND() LIMIT %d', (int)$single['quiz'], (int)$single['quiz_number'] );
                 $results = $this->wpdb->get_results($qry, OBJECT);
                 foreach($results as $s){
-                    array_push($newQuestions, $s);
                     $insert = $this->wpdb->insert(
                         $this->prefix . 'tutor_quiz_questions', 
                         array(
@@ -151,8 +150,49 @@ class TLQM_Api
                             'question_mark' => $s->question_mark, 
                             'question_settings' => $s->question_settings, 
                             'question_order' => $s->question_order
+                        ), 
+                        array(
+                            '%d', 
+                            '%s', 
+                            '%s', 
+                            '%s', 
+                            '%s', 
+                            '%s', 
+                            '%d'
                         )  
                     );
+                    $last_id = $this->wpdb->insert_id;
+
+                    // Process Answser
+                    $answerQry = $this->wpdb->prepare( 'SELECT * FROM '.$this->prefix.'tutor_quiz_question_answers WHERE `belongs_question_id`=%d', $s->question_id);
+                    $quiz_answer = $this->wpdb->get_results($answerQry, OBJECT);
+                    foreach($quiz_answer as $qsi){
+                        $insertQ = $this->wpdb->insert(
+                            $this->prefix.'tutor_quiz_question_answers', 
+                            array(
+                                'belongs_question_id' => $last_id, 
+                                'belongs_question_type' => $qsi->belongs_question_type, 
+                                'answer_title' => $qsi->answer_title, 
+                                'is_correct' => $qsi->is_correct, 
+                                'image_id' => $qsi->image_id, 
+                                'answer_two_gap_match' => $qsi->answer_two_gap_match, 
+                                'answer_view_format' => $qsi->answer_view_format, 
+                                'answer_settings' => $qsi->answer_settings, 
+                                'answer_order' => $qsi->answer_order
+                            ), 
+                            array(
+                                '%d', 
+                                '%s', 
+                                '%s', 
+                                '%d', 
+                                '%d', 
+                                '%s', 
+                                '%s', 
+                                '%s', 
+                                '%d'
+                            )
+                        );     
+                    }
                 }
             }
         }
@@ -178,7 +218,7 @@ class TLQM_Api
      */
     public function tlqmTopics($data){
         $course_id = $data['course_id'];
-        $qry = $this->wpdb->prepare( 'SELECT p.`ID`, p.`post_title` FROM '.$this->prefix.'posts p WHERE p.`post_type`=%s AND p.`post_parent`=%s ORDER BY p.`post_parent`', 'topics', $course_id);
+        $qry = $this->wpdb->prepare( 'SELECT p.`ID`, p.`post_title` FROM '.$this->prefix.'posts p WHERE p.`post_type`=%s AND p.`post_parent`=%s AND p.`post_status` IN ("publish", "draft") ORDER BY p.`post_parent`', 'topics', $course_id);
         $topics = $this->wpdb->get_results($qry, OBJECT);
         $newTopics = array();
         foreach($topics as $single) $newTopics[$single->ID] = $single->post_title;
